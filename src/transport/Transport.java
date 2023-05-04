@@ -17,6 +17,7 @@ import java.util.Objects;
             else this.model = model;
         }
 
+        public abstract void printType();
         public String startMoving() {
             return this + " - начинает движение!";
         }

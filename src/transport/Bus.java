@@ -6,10 +6,50 @@ public class Bus<D extends DriverD> extends Transport implements InRacing {
 
     private static final int BUS_MAX_SPEED = 30;
     private D driver = null;
+    private CapacityType capacityType = null;
+
+    public CapacityType getCapacityType() {
+        return capacityType;
+    }
+
+    public void setCapacityType(CapacityType capacityType) {
+        this.capacityType = capacityType;
+    }
+
+    public enum CapacityType {
+        VERY_LITTLE(null, 10), LITTLE(null, 25), MIDDLE(40, 50),
+        BIG(60, 80), VERY_BIG(100, 120);
+
+        private final Integer minCapacity;
+        private final Integer maxCapacity;
+
+        CapacityType(Integer minCapacity, Integer maxCapacity) {
+            this.minCapacity = minCapacity;
+            this.maxCapacity = maxCapacity;
+        }
+
+        @Override
+        public String toString() {
+            String str = "Вместимость: ";
+            if (minCapacity != null) str += "от " + minCapacity + " мест ";
+            if (maxCapacity != null) str += "до " + maxCapacity + " мест";
+            return str;
+        }
+    }
 
     public Bus(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
+
+    @Override
+    public void printType() {
+        if (capacityType != null) {
+            System.out.println(capacityType);
+        } else {
+        System.out.println("Данных по транспортному средству 'Автобус' недостаточно");
+        }
+    }
+
     public void appointDriver (D driver) {
         this.driver = driver;
     }
