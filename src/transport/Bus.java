@@ -26,17 +26,17 @@ public class Bus<D extends DriverD> extends Transport implements InRacing {
     }
 
     @Override
-    public String pitstop() {
-        return this + " - заехал на пит-стоп!";
+    public void pitstop() {
+        System.out.println(this + " - заехал на пит-стоп!");
     }
 
     @Override
-    public int calculateBestLoopTime() {
-        return LOOP_DISTANCE / maxSpeed();
+    public void calculateBestLoopTime() {
+        System.out.println(LOOP_DISTANCE / BUS_MAX_SPEED);
     }
 
     @Override
-    public int maxSpeed() {
-        return BUS_MAX_SPEED;
+    public void maxSpeed() {
+        System.out.println(BUS_MAX_SPEED);
     }
 }

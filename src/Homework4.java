@@ -18,6 +18,22 @@ public class Homework4 {
         Truck kamaz = new Truck("КаМАЗ", "4326", 10.8);
         Truck volvo = new Truck("Volvo", "FH12", 12.8);
 
+        System.out.println();
+        InRacing[] transports = {lada, audi, bmw1, bmw2, mb, man1, man2, scania, maz1, maz2, kamaz, volvo};
+        System.out.println();
+
+        for (InRacing transport : transports) {
+            System.out.println(transport);
+//            transport.pitstop();
+//            System.out.println("Лучшее время круга ");
+//            transport.calculateBestLoopTime();
+//            System.out.println("Максимальня скорость  ");
+//            transport.maxSpeed();
+//            System.out.println();
+        }
+
+        System.out.println();
+
         DriverB drLada = new DriverB("A", true, 1);
         DriverB drAudi = new DriverB("B", true, 2);
         DriverB drBmw1 = new DriverB("C", true, 3);
@@ -46,19 +62,5 @@ public class Homework4 {
         man1.printInfo();
         maz1.printInfo();
         volvo.printInfo();
-
-//        System.out.println();
-//        InRacing[] transports = {lada, audi, bmw1, bmw2, mb, man1, man2, scania, maz1, maz2, kamaz, volvo};
-//        System.out.println();
-
-//       for (InRacing transport : transports) {
-//            System.out.println(transport);
-//            System.out.println(transport.pitstop());
-//            System.out.println("Лучшее время круга " + transport.calculateBestLoopTime());
-//            System.out.println("Максимальня скорость  " + transport.maxSpeed());
-//            System.out.println();
-//        }
-
-        System.out.println();
     }
 }
