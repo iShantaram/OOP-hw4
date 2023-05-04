@@ -1,15 +1,16 @@
 package transport;
 
-import driver.DriverD;
+import driver.DriverC;
 
-public class Bus<D extends DriverD> extends Transport implements InRacing {
+public class Truck<D extends DriverC> extends Transport implements InRacing {
 
-    private static final int BUS_MAX_SPEED = 30;
+    private static final int TRUCK_MAX_SPEED = 40;
     private D driver = null;
 
-    public Bus(String brand, String model, double engineVolume) {
+    public Truck(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
+
     public void appointDriver (D driver) {
         this.driver = driver;
     }
@@ -20,6 +21,7 @@ public class Bus<D extends DriverD> extends Transport implements InRacing {
             System.out.println("Водитель не назначен!");
         }
     }
+
     @Override
     public String toString() {
         return getClass() + " { " + getBrand() + " " + getModel() + ", объем двигателя: " + getEngineVolume() + " }";
@@ -37,6 +39,6 @@ public class Bus<D extends DriverD> extends Transport implements InRacing {
 
     @Override
     public int maxSpeed() {
-        return BUS_MAX_SPEED;
+        return TRUCK_MAX_SPEED;
     }
 }
