@@ -1,5 +1,6 @@
 package transport;
 
+import driver.Driver;
 import driver.DriverC;
 
 public class Truck<D extends DriverC> extends Transport implements InRacing {
@@ -33,13 +34,16 @@ public class Truck<D extends DriverC> extends Transport implements InRacing {
             return str;
         }
     }
-    private D driver = null;
+    private Driver driver = null;
     private LiftType liftType = null;
 
     public Truck(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
-
+    @Override
+    public void getDiagnosted() {
+        System.out.println("Авто проходит диагностику");
+    }
     @Override
     public void printType() {
         if (liftType != null) {
@@ -48,35 +52,49 @@ public class Truck<D extends DriverC> extends Transport implements InRacing {
             System.out.println("Данных по транспортному средству 'Грузовой автомобиль' недостаточно");
         }
     }
-
-    public void appointDriver (D driver) {
-        this.driver = driver;
+    public void appointDriver (D driver) throws IllegalDriverException {
+        if (driver.isDriverLicense()) {
+            this.driver = driver;
+        } else {
+            throw new IllegalDriverException("У водителя " + driver.getName() + " для назначения на "
+                    + getBrand() + " " + getModel() + " отсутствуют права!");
+        }
     }
     public void printInfo() {
         if (driver != null) {
             System.out.println("Водитель " + driver + " класса " + driver.getCategory() + " управляет \n" + this + " и будет участвовать в заезде.");
         } else {
-            System.out.println("Водитель не назначен!");
+            System.out.println("На " + getModel() + " " + getBrand() + " водитель не назначен!\n");
         }
     }
-
     @Override
     public String toString() {
         return getClass() + " { " + getBrand() + " " + getModel() + ", объем двигателя: " + getEngineVolume() + " }";
     }
-
     @Override
     public void pitstop() {
         System.out.println(this + " - заехал на пит-стоп!");
     }
-
     @Override
     public void calculateBestLoopTime() {
         System.out.println(LOOP_DISTANCE / TRUCK_MAX_SPEED);
     }
-
     @Override
     public void maxSpeed() {
         System.out.println(TRUCK_MAX_SPEED);
+    }
+    @Override
+    public void appointDriver(Driver driver) throws IllegalDriverException {
+        if (driver.isDriverLicense()) {
+            if (driver.getCategory().equals("C")) {
+                this.driver = driver;
+            } else {
+                throw new IllegalDriverException("У водителя " + driver.getName() + " для назначения на "
+                        + getBrand() + " " + getModel() + " не соответствует категория прав!");
+            }
+        } else {
+            throw new IllegalDriverException("У водителя " + driver.getName() + " для назначения на "
+                    + getBrand() + " " + getModel() + " отсутствуют права!");
+        }
     }
 }

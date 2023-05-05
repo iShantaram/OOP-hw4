@@ -16,16 +16,14 @@ import java.util.Objects;
             if (model == null || model.isEmpty() || model.isBlank()) this.model = "Unknown model";
             else this.model = model;
         }
-
         public abstract void printType();
         public String startMoving() {
             return this + " - начинает движение!";
         }
-
+        public abstract void getDiagnosted() throws CantBeDiagnostedException;
         public String stopMoving() {
             return this + " - остановился!";
         }
-
         public double getEngineVolume() {
             return engineVolume;
         }
@@ -35,7 +33,6 @@ import java.util.Objects;
         public String getModel() {
             return model;
         }
-
         @Override
         public String toString() {
             return this.getClass() + " { " + brand + " " + model + ", объем двигателя: " + engineVolume + " }";
@@ -51,5 +48,4 @@ import java.util.Objects;
         public int hashCode() {
             return Objects.hash(brand, model, engineVolume);
         }
-
     }

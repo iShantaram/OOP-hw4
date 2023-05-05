@@ -34,14 +34,6 @@ public class Homework4 {
         volvo.setLiftType(Truck.LiftType.N3);
 
 //        InRacing[] transports = {lada, audi, bmw1, bmw2, mb, man1, man2, scania, maz1, maz2, kamaz, volvo};
-        Transport[] transports1 = {lada, audi, bmw1, bmw2, mb, man1, man2, scania, maz1, maz2, kamaz, volvo};
-        System.out.println();
-
-        for (Transport transport : transports1) {
-            System.out.println(transport);
-            transport.printType();
-        }
-
 //        for (InRacing transport : transports) {
 //            System.out.println(transport);
 //            transport.pitstop();
@@ -53,34 +45,35 @@ public class Homework4 {
 //        }
 
         System.out.println();
-//
-//        DriverB drLada = new DriverB("A", true, 1);
-//        DriverB drAudi = new DriverB("B", true, 2);
-//        DriverB drBmw1 = new DriverB("C", true, 3);
-//        DriverB drBmw2 = new DriverB("D", true, 4);
-//
-//        DriverD drMb = new DriverD("E", true, 5);
-//        DriverD drMan1 = new DriverD("F", true, 6);
-//        DriverD drMan2 = new DriverD("G", true, 7);
-//        DriverD drScania = new DriverD("H", true, 8);
-//
-//        DriverC drMaz1 = new DriverC("I", true, 9);
-//        DriverC drMaz2 = new DriverC("J", true, 10);
-//        DriverC drKamaz = new DriverC("K", true, 11);
-//        DriverC drVolvo = new DriverC("L", true, 12);
-//
-//        lada.appointDriver(drLada);
-//        audi.appointDriver(drAudi);
-//        mb.appointDriver(drMb);
-//        man1.appointDriver(drMan1);
-//        maz1.appointDriver(drMaz1);
-//        volvo.appointDriver(drVolvo);
+        DriverB drLada = new DriverB("A", true, 1);
+        DriverB drAudi = new DriverB("B", true, 2);
+        DriverB drBmw1 = new DriverB("C", false, 3);
+        DriverB drBmw2 = new DriverB("D", false, 4);
 
-//        lada.printInfo();
-//        audi.printInfo();
-//        mb.printInfo();
-//        man1.printInfo();
-//        maz1.printInfo();
-//        volvo.printInfo();
+        DriverD drMb = new DriverD("E", false, 5);
+        DriverD drMan1 = new DriverD("F", true, 6);
+        DriverD drMan2 = new DriverD("G", true, 7);
+        DriverB drScania = new DriverB("H", true, 0);
+
+        DriverC drMaz1 = new DriverC("I", true, 9);
+        DriverC drMaz2 = new DriverC("J", true, 10);
+        DriverC drKamaz = new DriverC("K", false, 11);
+        DriverB drVolvo = new DriverB("L", true, 12);
+
+        InRacing[] inRacings = {lada, audi, bmw1, bmw2, mb, man1, man2, scania, maz1, maz2, kamaz, volvo};
+//        Transport[] transports = {lada, audi, bmw1, bmw2, mb, man1, man2, scania, maz1, maz2, kamaz, volvo};
+        Driver[] drivers = {drLada, drAudi, drBmw1, drBmw2, drMb, drMan1, drMan2, drScania, drMaz1, drMaz2, drKamaz, drVolvo};
+
+        for (int i = 0; i < inRacings.length; i++) {
+            try {
+                inRacings[i].appointDriver(drivers[i]);
+            } catch (IllegalDriverException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println();
+        for (InRacing inRacing:inRacings) {
+            inRacing.printInfo();
+        }
     }
 }

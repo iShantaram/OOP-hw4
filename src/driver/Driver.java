@@ -5,14 +5,20 @@ public class Driver {
     private boolean isDriverLicense;
     private int experience;
 
+    private String category = null;
+
     public Driver(String name, boolean isDriverLicense, int experience) {
-        if (name.isEmpty() || name.isBlank() || name == null) {
-            this.name = "Anonymous";
+        if (name == null || name.isEmpty() || name.isBlank()) {
+            throw new IllegalArgumentException("У водителя должно быть имя");
         } else {
             this.name = name;
         }
         this.isDriverLicense = isDriverLicense;
-        this.experience = Math.max(0, experience);
+        if (experience < 0) {
+            throw new IllegalArgumentException("Стаж не может быть отрицательным");
+        } else {
+            this.experience = experience;
+        }
     }
 
     public String startMoving() {
@@ -62,5 +68,13 @@ public class Driver {
 
     public void increaseExperience() {
         this.experience++;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
